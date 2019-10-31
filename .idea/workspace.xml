@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73069d94-b8e7-47f6-9e81-156f82f99b1d" name="Default Changelist" comment="" />
+    <list default="true" id="73069d94-b8e7-47f6-9e81-156f82f99b1d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/real_app_simulation_with_files_and_connections/swoole.php" beforeDir="false" afterPath="$PROJECT_DIR$/real_app_simulation_with_files_and_connections/swoole.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572537621289</updated>
-      <workItem from="1572537622603" duration="295000" />
+      <workItem from="1572537622603" duration="1093000" />
     </task>
     <servers />
   </component>

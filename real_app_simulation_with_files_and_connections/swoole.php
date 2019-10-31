@@ -47,7 +47,7 @@ interface ConnectionInterface
 
 class MysqlConnection implements ConnectionInterface
 {
-    
+
     private const CONNECTION_SETTINGS = [
         'host' => MYSQL_HOST,
         'port' => MYSQL_PORT,
