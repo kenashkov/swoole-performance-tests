@@ -113,7 +113,8 @@ Performance conclusions:
 - based on test [1] Swoole is twice as fast as Apache/mod_php in handling connections and returning response.
 - based on tests [2] and [3] it is clear the advantage Swoole has when loading php files/classes - it is done only once before server start.
 - based on tests [4] and [5] we can say that if the persistent connections are not used Swoole has clear advantage. When persistent connections are used Swoole is around twice faster - the result from test [1].  
-The persistent connections in PHP need to be very well controller as otherwise they can take up to the maximum allowed by the DB. In Swoole it is very easy to control the number of the connections in the Pool. They are the product of the number of Workers and the number of allocated connections per pool. In our tests this is 24 workers * 5 connections = 120.
+The persistent connections in PHP need to be very well controlled as otherwise they can take up to the maximum allowed by the DB.
+In Swoole it is very easy to control the number of the connections in the Pool. They are the product of the number of Workers and the number of allocated connections per pool. In our tests this is 24 workers * 5 connections = 120.
 - test [7] shows the expected - Swoole is king in caching as it can use the local PHP memory for that.
 - tests [8] and [9] simulate load closer to a real world application. Here Swoole coroutines and persistent memory give the advantage. The drop in the performance of Swoole in [9] is due to the SLEEP(0.01) in the query. This is expected and is put here to show that in applications where the slowest part are the DB queries by just running these on Swoole will not improve much the performance.
 What will improve the performance in this case is to run some (most if possible) of the queries in parallel by using sub-coroutines. This is possible only if the queries are independent of each other.
@@ -134,3 +135,9 @@ Swoole also supports HTTP2 and HTTPS but these were not included in the tests.
 
 One last thing to note is that the tests were done on a 6 core processor. Modern servers are usually dual socket and are 8-10 cores per socket so the actual results if you run the same tests on your server will be better.
 Of course running actual code will produce different results.
+
+## Additional resources
+
+- [English documentation](http://swoole.co.uk) - some parts of the documentation are outdated.
+- [Chinese documentation](https://wiki.swoole.com/) - Google Translate does a decent job and I strongly recommend this resource. Besides current documentation there are also many technical details/advanced sections provided.
+- [Coroutines in Swoole](http://vesko.blogs.azonmedia.com/2019/09/19/coroutines-in-swoole/) - Introduction and examples by me in Coroutines in Swoole.
