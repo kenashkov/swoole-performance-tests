@@ -52,6 +52,10 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 1 000 / 10 000 - Requests per second: 34662.77 [#/sec] (mean)
   - Apache/mod_php 1 000 / 10 000 - Requests per second: 1339.36 [#/sec] (mean) with **161 failed requests**
 - [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
+  - Swoole 100 / 10 000 - Requests per second: 53625.63 [#/sec] (mean)
+  - Apache/mod_php 100 / 10 000 - Requests per second: 2088.27 [#/sec] (mean) with **370 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: 35451.69 [#/sec] (mean)
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: 683.57 [#/sec] (mean) with **572 failed requests**
 - [4] **[basic_query](./basic_query/)** - a single DB query
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
