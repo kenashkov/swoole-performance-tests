@@ -5,8 +5,8 @@ Swoole uses Pool implementation based on Swoole\Channel and Apache/mod_php uses 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **4163.17**
 - Apache/mod_php 100 / 10 000 - Requests per second: **2327.34**
-- Swoole 100 / 10 000 - Requests per second: **4326.38**
-- Apache/mod_php 100 / 10 000 - Requests per second: **failed, 9547 requests completed**
+- Swoole 1 000 / 10 000 - Requests per second: **4326.38**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 9547 requests completed**
 
 Both show much better performance than the non-pooled test.
 It is important to note that the persistent connections in MySQLi do perform [additional connection cleanup](https://www.php.net/manual/en/mysqli.persistconns.php) when the connection is returned back to the pool.

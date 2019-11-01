@@ -10,6 +10,8 @@ Most tests are run with 100 requests per second (concurrency) and 10 000 request
 
 It is important to note that in certain tests running multiple times `ab` against Apache/mod_php does show a little better results (up to 20% improvement). Because of this Apache/mod_php is always given "a second chance" in the tests below.
 
+There are also variations between the Swoole runs but these are smaller (about 10%). The average of these is taken for the results.
+
 ## Source
 
 The below are given all the files needed to repeat the test.
@@ -68,17 +70,28 @@ A list of the test - please click on each test for more details and complete `ab
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
   - Swoole 100 / 10 000 - Requests per second: **4163.17**
   - Apache/mod_php 100 / 10 000 - Requests per second: **2327.34**
-  - Swoole 100 / 10 000 - Requests per second: **4326.38**
-  - Apache/mod_php 100 / 10 000 - Requests per second: **failed, 9547 requests completed**
+  - Swoole 1 000 / 10 000 - Requests per second: **4326.38**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 9547 requests completed**
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
   - Swoole 100 / 10 000 - Requests per second: **53499.11**
   - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
-  - Swoole 100 / 10 000 - Requests per second: **38591.86**
-  - Apache/mod_php 100 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **38591.86**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
 - [7] **[real_app_simulation](./real_app_simulation/)** - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
+  - Swoole 100 / 10 000 - Requests per second: **15195.12**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **232.29** with **364 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **14635.35**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1266 requests completed**
 - [8] **[real_app_simulation_with_files](./real_app_simulation_with_files/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 10 file writes and 10 file reads
+  - Swoole 100 / 10 000 - Requests per second: **845.97**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **208.95** with **396 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **1426.92**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1339 requests completed**
 - [9] **[real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 20 DB reads (pooled connection)
-
+  - Swoole 100 / 10 000 - Requests per second: **285.91**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **134.77** with **396 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **314.33**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **108.94** with **558 failed requests**
 
 ## Aggregated results and Graphs
 

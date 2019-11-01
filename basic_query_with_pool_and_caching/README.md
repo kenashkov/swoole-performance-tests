@@ -7,8 +7,8 @@ This load basically compares the unserialization speed and APCu read spead versu
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **53499.11**
 - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
-- Swoole 100 / 10 000 - Requests per second: **38591.86**
-- Apache/mod_php 100 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
+- Swoole 1 000 / 10 000 - Requests per second: **38591.86**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
 
 #### Swoole 100 / 10 000
 ```
@@ -100,7 +100,7 @@ Percentage of the requests served within a certain time (ms)
 ```
 #### Swoole 1 000 / 10 000
 ```
-root@vesko-dev /home/local/swoole_tests/swoole-performance-tests/basic_query_with_pool_and_caching (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8082/
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8082/
 
 [...]
 
@@ -144,7 +144,7 @@ Percentage of the requests served within a certain time (ms)
 ```
 #### Apache 1000 / 10 000
 ```
-root@vesko-dev /home/local/swoole_tests/swoole-performance-tests/basic_query_with_pool_and_caching (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_query_with_pool_and_caching/apache.php
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_query_with_pool_and_caching/apache.php
 
 [...]
 
