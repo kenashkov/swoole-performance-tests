@@ -12,6 +12,10 @@ It is important to note that in certain tests running multiple times `ab` agains
 
 There are also variations between the Swoole runs but these are smaller (about 10%). The average of these is taken for the results.
 
+These tests are attempt to show different aspects of Swoole and also a comparison between Swoole and Apache/mod_php in tests close to real world applications.
+
+Please create a **Pull Request** if you think there is a mistake or there is a test you would like to add or more tuning to either Swoole or Apache that could/should be done.
+
 ## Source
 
 The below are given all the files needed to repeat the test.
@@ -23,7 +27,7 @@ The below are given all the files needed to repeat the test.
 - [Dockerfiles](https://github.com/kenashkov/php-tests-dockerfiles)
 - [Zend Framework](https://framework.zend.com/downloads) - to be installed under ./zend_framework with `composer require zendframework/zendframework` for test purpose
 
-The tests were run on:
+The tests were done on:
 ```
 Intel(R) Xeon(R) CPU X5690  @ 3.47GHz - 6 physical cores, 12MB cache
 Multithreading enabled - 12 cores
@@ -40,6 +44,7 @@ Apache running in Prefork tuned for many concurrent connections as per https://o
     MaxRequestWorkers       8000
     MaxConnectionsPerChild 10000
 </IfModule>
+Swoole is running with 24 workers (and 5 DB connections per Worker in the DB Pools whenever this is applicable)
 ```
 
 The MySQL instance used for testing is MySQL 8 on another host in the same network with connection limit of 4000.
