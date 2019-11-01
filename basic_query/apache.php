@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 
-require_once('../conn_settings.php');
+require_once('../include/conn_settings.php');
 
 // read 1 entry from DB
 $mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);

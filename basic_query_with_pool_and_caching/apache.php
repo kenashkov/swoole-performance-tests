@@ -1,5 +1,8 @@
 <?php
 error_reporting(E_ALL);
+
+require_once('../include/conn_settings.php');
+
 // read 1 entry from DB
 
 $data = apcu_fetch('test1_data', $success);

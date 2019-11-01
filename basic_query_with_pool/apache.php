@@ -1,5 +1,8 @@
 <?php
 error_reporting(E_ALL);
+
+require_once('../include/conn_settings.php');
+
 // read 1 entry from DB
 
 //please note the "p:" in front of the host

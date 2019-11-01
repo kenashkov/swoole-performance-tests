@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 
-require_once('../conn_settings.php');
+require_once('../include/conn_settings.php');
 
 $http = new Swoole\Http\Server('0.0.0.0', 8082, SWOOLE_PROCESS);
 $http->set(['worker_num' => swoole_cpu_num() * 2]);

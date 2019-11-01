@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL);
 
+require_once('../include/conn_settings.php');
+
 class Pool
 {
 
