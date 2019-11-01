@@ -92,7 +92,7 @@ A list of the test - please click on each test for more details and complete `ab
   - Apache/mod_php 100 / 10 000 - Requests per second: **134.77** with **396 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **314.33**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **108.94** with **558 failed requests**
-- [10] **[real_app_simulation_with_files_and_connections_simpler](./real_app_simulation_with_files_and_connections/)** - [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) but with less loaded classes and cache/file/db reads
+- [10] **[real_app_simulation_with_files_and_connections_simpler](./real_app_simulation_with_files_and_connections_simpler/)** - [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) but with less loaded classes and cache/file/db reads
   - Swoole 100 / 10 000 - Requests per second: **1919.86**
   - Apache/mod_php 100 / 10 000 - Requests per second: **1221.60** with **183 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **1956.75**
