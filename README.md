@@ -36,10 +36,6 @@ Apache running in Prefork tuned for many concurrent connections as per https://o
     MaxRequestWorkers       8000
     MaxConnectionsPerChild 10000
 </IfModule>
-
-```
-
-
 ```
 
 ## Tests and results
