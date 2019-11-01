@@ -8,6 +8,8 @@ Apache `ab` tool is used for the tests. The non-informational and repeating part
 
 Most tests are run with 100 requests per second (concurrency) and 10 000 requests (denoted 100 / 10 000 in the results) and/or 1 000 and 10 000 respectively (whenever possible/practical due to the high load). KeepAlive is also used on all tests (-k).
 
+It is important to note that in certain tests running multiple times `ab` against Apache/mod_php does show a little better results (up to 20% improvement). Because of this Apache/mod_php is always given "a second chance" in the tests below.
+
 ## Source
 
 The below are given all the files needed to repeat the test.
@@ -62,6 +64,8 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 100 / 10 000 - Requests per second: 1804.08 [#/sec] (mean)
   - Apache/mod_php 100 / 10 000 - Requests per second: 1314.86 [#/sec] (mean)
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
+  - Swoole 100 / 10 000 - Requests per second: 4163.17 [#/sec] (mean)
+  - Apache/mod_php 100 / 10 000 - Requests per second: 2327.34 [#/sec] (mean)
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
 - [7] **[real_app_simulation](./real_app_simulation/)** - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
 - [8] **[real_app_simulation_with_files](./real_app_simulation_with_files/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 10 file writes and 10 file reads

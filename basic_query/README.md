@@ -7,6 +7,7 @@ The results are:
 - Apache/mod_php 100 / 10 000 - Requests per second: 1314.86 [#/sec] (mean)
 
 In this test Swoole has some advantage because the coroutine aware MySQL client is used. Both will perform much better if connection pooling is used.
+As both server will open a number of database connections equal to the number of incoming requests and this will overload the database no tests with 1 000 / 10 000 are performed.
 
 ##### Swoole 100 / 10 000
 ```
