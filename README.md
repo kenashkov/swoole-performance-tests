@@ -92,8 +92,40 @@ A list of the test - please click on each test for more details and complete `ab
   - Apache/mod_php 100 / 10 000 - Requests per second: **134.77** with **396 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **314.33**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **108.94** with **558 failed requests**
+- [10] **[real_app_simulation_with_files_and_connections_simpler](./real_app_simulation_with_files_and_connections/)** - [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) but with less loaded classes and cache/file/db reads
+  - Swoole 100 / 10 000 - Requests per second: **1919.86**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **1221.60** with **183 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **1956.75**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 6776 completed requests**
 
 ## Aggregated results and Graphs
 
+[TBD]
 
 ## Conclusion
+
+Performance conclusions:
+- based on test [1] Swoole is twice as fast as Apache/mod_php in handling connections and returning response.
+- based on tests [2] and [3] it is clear the advantage Swoole has when loading php files/classes - it is done only once before server start.
+- based on tests [4] and [5] we can say that if the persistent connections are not used Swoole has clear advantage. When persistent connections are used Swoole is around twice faster - the result from test [1].  
+The persistent connections in PHP need to be very well controller as otherwise they can take up to the maximum allowed by the DB. In Swoole it is very easy to control the number of the connections in the Pool. They are the product of the number of Workers and the number of allocated connections per pool. In our tests this is 24 workers * 5 connections = 120.
+- test [7] shows the expected - Swoole is king in caching as it can use the local PHP memory for that.
+- tests [8] and [9] simulate load closer to a real world application. Here Swoole coroutines and persistent memory give the advantage. The drop in the performance of Swoole in [9] is due to the SLEEP(0.01) in the query. This is expected and is put here to show that in applications where the slowest part are the DB queries by just running these on Swoole will not improve much the performance.
+What will improve the performance in this case is to run some (most if possible) of the queries in parallel by using sub-coroutines. This is possible only if the queries are independent of each other.
+Also both these tests show more requests served under higher load - this can be explained with the async operations performed in these tests.
+- test [10] is a simpler version of [9] and it repeats its results
+
+Overall conclusion:
+- in simple applications or microservices Swoole will excel as these will be mostly cached. Swoole leads here as it loads the classes only ones and can use memory for all the caching.
+- In more complex applications the difference between Swoole and Apache/mod_php is about 1.8-2 times - this is due to the fact that the speed is greatly reduced by the IO operations. Swoole is still more efficient here due to the coroutines.
+If the application can be optimized to use caching as much as possible Swoole will perform better as there is no serialization/unserialization and access to external storage (be it even shared memory access).
+An app/service that uses mostly caching and perhaps a single fast read IO operation can be scaled to 4-5 000 requests per second.
+If there are no IO operations (for example Swoole\Table can be used for sharing data between the Workers) then the requests can reach 10-20 000 per second (test [6] shows 53 000 but this drops when there is actual business logic to be executed).
+- Swoole can serve more requests than Apache and there was no a single failed request in all the tests.
+- Swoole is a step further both in speed and the load that can be sustained compared to Apache/mod_php
+
+Swoole can also serve as a traditional web server (static_handler & document_root need to be enabled) but it is better to offload the static handling to Apache or Nginx.
+Swoole also supports HTTP2 and HTTPS but these were not included in the tests.
+
+One last thing to note is that the tests were done on a 6 core processor. Modern servers are usually dual socket and are 8-10 cores per socket so the actual results if you run the same tests on your server will be better.
+Of course running actual code will produce different results.
