@@ -45,18 +45,18 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 100 / 10 000 - Requests per second: 52678.71 [#/sec] (mean)
   - Apache/mod_php 100 / 10 000 - Requests per second: 26008.41 [#/sec] (mean)
   - Swoole 1 000 / 10 000 - Requests per second: 34923.27 [#/sec] (mean)
-  - Apache/mod_php 1 000 / 10 000 - Requests per second: 1499.39 [#/sec] (mean) with 182 failed requests
-- [2] [basic_class_load](./basic_class_load/) - basic + contains 2 require_once() statements
-- [3] [basic_class_load_multiple](./basic_class_load_multiple/) - basic_class_load + autoloading (thorugh Composer autoload) 100 classes 
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: 1499.39 [#/sec] (mean) with **182 failed requests**
+- [2] [basic_class_load](./basic_class_load/) - [basic](./basic/) + contains 2 require_once() statements
+- [3] [basic_class_load_multiple](./basic_class_load_multiple/) - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
 - [4] [basic_query](./basic_query/) - a single DB query
-- [5] [basic_query_with_pool](./basic_query_with_pool/) - a single DB query with pooling
-- [6] [basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching) - reading cashed results
-- [7] [real_app_simulation](./real_app_simulation/) - basic_class_load_multiple + 10 000 cache reads
-- [8] [real_app_simulation_with_files](./real_app_simulation_with_files/) - real_app_simulation_with_files + 10 file writes and 10 file reads
-- [9] [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) - real_app_simulation_with_files + 20 DB reads (pooled connection)
+- [5] [basic_query_with_pool](./basic_query_with_pool/) - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
+- [6] [basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching) - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
+- [7] [real_app_simulation](./real_app_simulation/) - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
+- [8] [real_app_simulation_with_files](./real_app_simulation_with_files/) - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 10 file writes and 10 file reads
+- [9] [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 20 DB reads (pooled connection)
 
-## Basic test with require
 
-This test has just two `require_once()` statements.
+## Aggregated results and Graphs
 
-#### Swoole
+
+## Conclusion
