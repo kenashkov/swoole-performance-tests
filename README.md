@@ -131,7 +131,7 @@ If there are no IO operations (for example Swoole\Table can be used for sharing 
 - Swoole is a step further both in speed and the load that can be sustained compared to Apache/mod_php
 
 Swoole can also serve as a traditional web server (static_handler & document_root need to be enabled) but it is better to offload the static handling to Apache or Nginx.
-Swoole also supports HTTP2 and HTTPS but these were not included in the tests.
+Swoole also supports HTTP2 and HTTPS but these were not included in the tests. And there is also a Websocket server!
 
 One last thing to note is that the tests were done on a 6 core processor. Modern servers are usually dual socket and are 8-10 cores per socket so the actual results if you run the same tests on your server will be better.
 Of course running actual code will produce different results.
