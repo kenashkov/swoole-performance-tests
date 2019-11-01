@@ -6,7 +6,7 @@ Performance tests of [Swoole](https://www.swoole.co.uk/) against other PHP appli
 
 Apache `ab` tool is used for the tests. The non-informational and repeating part is cut and replaced with [...] in the outputs.
 
-Most tests are run with 1 000 requests per second (concurrency) and 10 000 requests in total unless otherwise noted. KeepAlive is also used on all tests (-k).
+Most tests are run with 100 requests per second (concurrency) and 10 000 requests (denoted 100 / 10 000 in the results) and/or 1 000 and 10 000 respectively (whenever possible/practical due to the high load). KeepAlive is also used on all tests (-k).
 
 ## Source
 
@@ -38,6 +38,8 @@ Apache running in Prefork tuned for many concurrent connections as per https://o
 </IfModule>
 ```
 
+The MySQL instance used for testing is MySQL 8 on another host in the same network with connection limit of 4000.
+
 ## Tests and results
 
 A list of the test - please click on each test for more details and complete `ab` output:
@@ -57,6 +59,8 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 1 000 / 10 000 - Requests per second: 35451.69 [#/sec] (mean)
   - Apache/mod_php 1 000 / 10 000 - Requests per second: 683.57 [#/sec] (mean) with **572 failed requests**
 - [4] **[basic_query](./basic_query/)** - a single DB query
+  - Swoole 100 / 10 000 - Requests per second: 1804.08 [#/sec] (mean)
+  - Apache/mod_php 100 / 10 000 - Requests per second: 1314.86 [#/sec] (mean)
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
 - [7] **[real_app_simulation](./real_app_simulation/)** - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
