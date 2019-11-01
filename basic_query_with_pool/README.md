@@ -1,5 +1,7 @@
 # Basic query with pool test
 
+Swoole uses Pool implementation based on Swoole\Channel and Apache/mod_php uses MySQLi persistent connections.
+
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **4163.17**
 - Apache/mod_php 100 / 10 000 - Requests per second: **2327.34**

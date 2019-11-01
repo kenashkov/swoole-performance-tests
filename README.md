@@ -71,6 +71,10 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 100 / 10 000 - Requests per second: **4326.38**
   - Apache/mod_php 100 / 10 000 - Requests per second: **failed, 9547 requests completed**
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
+  - Swoole 100 / 10 000 - Requests per second: **53499.11**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
+  - Swoole 100 / 10 000 - Requests per second: **38591.86**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
 - [7] **[real_app_simulation](./real_app_simulation/)** - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
 - [8] **[real_app_simulation_with_files](./real_app_simulation_with_files/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 10 file writes and 10 file reads
 - [9] **[real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 20 DB reads (pooled connection)
