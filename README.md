@@ -117,7 +117,7 @@ The persistent connections in PHP need to be very well controller as otherwise t
 - test [7] shows the expected - Swoole is king in caching as it can use the local PHP memory for that.
 - tests [8] and [9] simulate load closer to a real world application. Here Swoole coroutines and persistent memory give the advantage. The drop in the performance of Swoole in [9] is due to the SLEEP(0.01) in the query. This is expected and is put here to show that in applications where the slowest part are the DB queries by just running these on Swoole will not improve much the performance.
 What will improve the performance in this case is to run some (most if possible) of the queries in parallel by using sub-coroutines. This is possible only if the queries are independent of each other.
-Also both these tests show more requests served under higher load - this can be explained with the async operations performed in these tests.
+Also both these tests show more requests served under higher load - this I attribute to the async operations performed in these tests and Swoole relying on the coroutines for these.
 - test [10] is a simpler version of [9] and it repeats its results
 
 Overall conclusion:
