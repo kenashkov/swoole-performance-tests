@@ -47,6 +47,10 @@ A list of the test - please click on each test for more details and complete `ab
   - Swoole 1 000 / 10 000 - Requests per second: 34923.27 [#/sec] (mean)
   - Apache/mod_php 1 000 / 10 000 - Requests per second: 1499.39 [#/sec] (mean) with **182 failed requests**
 - [2] **[basic_class_load](./basic_class_load/)** - [basic](./basic/) + contains 2 require_once() statements
+  - Swoole 100 / 10 000 - Requests per second: 52451.86 [#/sec] (mean)
+  - Apache/mod_php 100 / 10 000 - Requests per second: 11559.91 [#/sec] (mean)
+  - Swoole 1 000 / 10 000 - Requests per second: 34662.77 [#/sec] (mean)
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: 1339.36 [#/sec] (mean) with **161 failed requests**
 - [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
 - [4] **[basic_query](./basic_query/)** - a single DB query
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
