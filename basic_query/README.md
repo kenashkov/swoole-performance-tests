@@ -3,8 +3,10 @@
 The test does a single query to the database and prints the result. No connection pooling or caching is used.
 
 The results are:
-- Swoole 100 / 10 000 - Requests per second: 1804.08 [#/sec] (mean)
-- Apache/mod_php 100 / 10 000 - Requests per second: 1314.86 [#/sec] (mean)
+- Swoole 100 / 10 000 - Requests per second: **1804.08**
+- Apache/mod_php 100 / 10 000 - Requests per second: **1314.86**
+- Swoole 1 000 / 10 000 - Not performed (due to number of DB connection)
+- Apache/mod_php 1 000 / 10 000 - Not performed (due to number of DB connections)
 
 In this test Swoole has some advantage because the coroutine aware MySQL client is used. Both will perform much better if connection pooling is used.
 As both server will open a number of database connections equal to the number of incoming requests and this will overload the database no tests with 1 000 / 10 000 are performed.

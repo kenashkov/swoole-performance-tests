@@ -4,10 +4,10 @@ This test has two require_once() statements and loads with class_exists() 100 ra
 class_exists() triggers the autoload (in this case this is Composer's autoload).
 
 The results are:
-- Swoole 100 / 10 000 - Requests per second: 53625.63 [#/sec] (mean)
-- Apache/mod_php 100 / 10 000 - Requests per second: 2088.27 [#/sec] (mean) with **370 failed requests**
-- Swoole 1 000 / 10 000 - Requests per second: 35451.69 [#/sec] (mean)
-- Apache/mod_php 1 000 / 10 000 - Requests per second: 683.57 [#/sec] (mean) with **572 failed requests**
+- Swoole 100 / 10 000 - Requests per second: **53625.63**
+- Apache/mod_php 100 / 10 000 - Requests per second: **2088.27** with **370 failed requests**
+- Swoole 1 000 / 10 000 - Requests per second: **35451.69**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **683.57** with **572 failed requests**
 
 As in the [basic_class_load test](../basic_class_load) Apache/mod_php is sufferring from the multiple autoloading. Apache shows high failure rate.
 

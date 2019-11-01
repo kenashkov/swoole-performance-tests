@@ -3,10 +3,10 @@
 This test has two require_once() statements. 
 
 The results are:
-- Swoole 100 / 10 000 - Requests per second: 52451.86 [#/sec] (mean)
-- Apache/mod_php 100 / 10 000 - Requests per second: 11559.91 [#/sec] (mean)
-- Swoole 1 000 / 10 000 - Requests per second: 34662.77 [#/sec] (mean)
-- Apache/mod_php 1 000 / 10 000 - Requests per second: 1339.36 [#/sec] (mean) with **161 failed requests**
+- Swoole 100 / 10 000 - Requests per second: **52451.86**
+- Apache/mod_php 100 / 10 000 - Requests per second: **11559.91**
+- Swoole 1 000 / 10 000 - Requests per second: **34662.77**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **1339.36** with **161 failed requests**
 
 In this test Swoole performance is unaffected comapred to the [basic test](../basic/) because Swoole loads the file only once before the HTTP server startup.
 On the other hand Apache/mod_php performance suffers somewhat (in fact in half in the 100 / 10 000 test) as it loads the files at every request (even with Opcache enabled there is still a cost - please see [PHP RFC: Preloading](https://wiki.php.net/rfc/preload)).

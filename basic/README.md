@@ -3,10 +3,10 @@
 This is a purely synthetic test returning "OK" output.
 As these tests go the produced output is not relevant to real world application.
 The results are:
-- Swoole 100 / 10 000 - Requests per second: 52678.71 [#/sec] (mean)
-- Apache/mod_php 100 / 10 000 - Requests per second: 26008.41 [#/sec] (mean)
-- Swoole 1 000 / 10 000 - Requests per second: 34923.27 [#/sec] (mean)
-- Apache/mod_php 1 000 / 10 000 - Requests per second: 1499.39 [#/sec] (mean) with **182 failed requests**
+- Swoole 100 / 10 000 - Requests per second: **52678.71**
+- Apache/mod_php 100 / 10 000 - Requests per second: **26008.41**
+- Swoole 1 000 / 10 000 - Requests per second: **34923.27**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **1499.39** with **182 failed requests**
 
 This test just gives an indication that Swoole is overall twice faster serving simple requests.
 This result will be affected if a large class codebase is being loaded - Swoole does this only once, while Apache/mod_php has to load the files on every request (even with Opcache enabled) so in this case Apache/mod_php will be a little slower.

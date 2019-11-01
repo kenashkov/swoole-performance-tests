@@ -1,8 +1,10 @@
 # Basic query with pool test
 
 The results are:
-- Swoole 100 / 10 000 - Requests per second: 4163.17 [#/sec] (mean)
-- Apache/mod_php 100 / 10 000 - Requests per second: 2327.34 [#/sec] (mean)
+- Swoole 100 / 10 000 - Requests per second: **4163.17**
+- Apache/mod_php 100 / 10 000 - Requests per second: **2327.34**
+- Swoole 100 / 10 000 - Requests per second: **4326.38**
+- Apache/mod_php 100 / 10 000 - Requests per second: **failed, 9547 requests completed**
 
 Both show much better performance than the non-pooled test.
 It is important to note that the persistent connections in MySQLi do perform [additional connection cleanup](https://www.php.net/manual/en/mysqli.persistconns.php) when the connection is returned back to the pool.
@@ -112,4 +114,68 @@ Percentage of the requests served within a certain time (ms)
   98%     67
   99%     70
  100%   2335 (longest request)
+```
+#### Swoole 1 000 / 10 000
+```
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8082/
+
+[...]
+
+Server Software:        swoole-http-server
+Server Hostname:        192.168.0.233
+Server Port:            8082
+
+Document Path:          /
+Document Length:        792 bytes
+
+Concurrency Level:      1000
+Time taken for tests:   2.311 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    10000
+Total transferred:      9460000 bytes
+HTML transferred:       7920000 bytes
+Requests per second:    4326.38 [#/sec] (mean)
+Time per request:       231.140 [ms] (mean)
+Time per request:       0.231 [ms] (mean, across all concurrent requests)
+Transfer rate:          3996.83 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    6  20.1      0     101
+Processing:    29  210  36.5    209     346
+Waiting:        2  210  36.6    209     346
+Total:         32  216  32.2    210     355
+
+Percentage of the requests served within a certain time (ms)
+  50%    210
+  66%    216
+  75%    221
+  80%    229
+  90%    254
+  95%    295
+  98%    317
+  99%    325
+ 100%    355 (longest request)
+```
+#### Apache 1 000 / 10 000
+```
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_query_with_pool/apache.php
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 192.168.0.233 (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+apr_socket_recv: Connection reset by peer (104)
+Total of 9547 requests completed
 ```
