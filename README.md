@@ -102,6 +102,11 @@ A list of the test - please click on each test for more details and complete `ab
   - Apache/mod_php 100 / 10 000 - Requests per second: **1221.60** with **183 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **1956.75**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 6776 completed requests**
+- [11] **[simple_real_app_simulation](./simple_real_app_simulation)** - 1000 reads from cache, loads 100 classes and performs 2 fast DB queries.
+  - Swoole 100 / 10 000 - Requests per second: **2288.58**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **1057.52** with **355 failed requests**
+  - Swoole 1 000 / 10 000 - Requests per second: **2228.23**
+  - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 7702 completed requests**
 
 ## Aggregated results and Graphs
 
@@ -120,6 +125,7 @@ In Swoole it is very easy to control the number of the connections in the Pool. 
 What will improve the performance in this case is to run some (most if possible) of the queries in parallel by using sub-coroutines. This is possible only if the queries are independent of each other.
 Also both these tests show more requests served under higher load - this I attribute to the async operations performed in these tests and Swoole relying on the coroutines for these.
 - test [10] is a simpler version of [9] and it repeats its results
+- test [11] is just a representation of what a real world Swoole application should aim to be - use as much as possible caching and few IO operations. The amount of loaded classes does not affect the performance. 
 
 Overall conclusion:
 - in simple applications or microservices Swoole will excel as these will be mostly cached. Swoole leads here as it loads the classes only ones and can use memory for all the caching.
@@ -129,6 +135,8 @@ An app/service that uses mostly caching and perhaps a single fast read IO operat
 If there are no IO operations (for example Swoole\Table can be used for sharing data between the Workers) then the requests can reach 10-20 000 per second (test [6] shows 53 000 but this drops when there is actual business logic to be executed).
 - Swoole can serve more requests than Apache and there was no a single failed request in all the tests.
 - Swoole is a step further both in speed and the load that can be sustained compared to Apache/mod_php
+
+Swoole does not execute PHP faster that any other setup. If your application uses heavy processing in PHP it will not benefit that much if you switch to Swoole.
 
 Swoole can also serve as a traditional web server (static_handler & document_root need to be enabled) but it is better to offload the static handling to Apache or Nginx.
 Swoole also supports HTTP2 and HTTPS but these were not included in the tests. And there is also a Websocket server!
