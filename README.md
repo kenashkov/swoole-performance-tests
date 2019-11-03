@@ -29,6 +29,8 @@ The below are given all the files needed to repeat the test.
 
 The tests were done on:
 ```
+Swoole container: PHP 7.3.10 & Swoole 4.4.10 (note - at the time of writing this is not yet officially released, the build was done on 31st Oct 2019)
+Apache/mod_php container: Apache 2.4.25 & PHP 7.3.10
 Intel(R) Xeon(R) CPU X5690  @ 3.47GHz - 6 physical cores, 12MB cache
 Multithreading enabled - 12 cores
 24 GB RAM

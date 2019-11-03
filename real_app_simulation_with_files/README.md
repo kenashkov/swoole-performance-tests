@@ -5,6 +5,8 @@ This test is [real_app_simluation](../real_app_simulation/) with 10 file reads a
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **845.97**
 - Apache/mod_php 100 / 10 000 - Requests per second: **208.95** with **396 failed requests**
+- Swoole 500 / 10 000 - Requests per second: **1372.28**
+- Apache/mod_php 500 / 10 000 - Requests per second: **185.80** with **603 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **1426.92**
 - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1339 requests completed**
 
@@ -98,6 +100,96 @@ Percentage of the requests served within a certain time (ms)
   98%    470
   99%    477
  100%   4860 (longest request)
+```
+
+#### Swoole 500 / 10 000
+```
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 500 -n 10000 -k http://192.168.0.233:8082/
+
+[...]
+
+Server Software:        swoole-http-server
+Server Hostname:        192.168.0.233
+Server Port:            8082
+
+Document Path:          /
+Document Length:        792 bytes
+
+Concurrency Level:      500
+Time taken for tests:   7.287 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    10000
+Total transferred:      9460000 bytes
+HTML transferred:       7920000 bytes
+Requests per second:    1372.28 [#/sec] (mean)
+Time per request:       364.357 [ms] (mean)
+Time per request:       0.729 [ms] (mean, across all concurrent requests)
+Transfer rate:          1267.75 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   8.2      0      55
+Processing:    61  359 178.6    315    1066
+Waiting:       21  359 178.6    315    1066
+Total:         71  361 177.8    323    1066
+
+Percentage of the requests served within a certain time (ms)
+  50%    323
+  66%    421
+  75%    486
+  80%    527
+  90%    631
+  95%    694
+  98%    757
+  99%    794
+ 100%   1066 (longest request)
+```
+#### Apache 500 / 10 000
+```
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 500 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/real_app_simulation_with_files/apache.php
+
+[...]
+
+Server Software:        Apache/2.4.25
+Server Hostname:        192.168.0.233
+Server Port:            8083
+
+Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulation_with_files/apache.php
+Document Length:        792 bytes
+
+Concurrency Level:      500
+Time taken for tests:   53.823 seconds
+Complete requests:      10000
+Failed requests:        603
+   (Connect: 0, Receive: 0, Length: 603, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    9785
+Total transferred:      10397705 bytes
+HTML transferred:       7921430 bytes
+Requests per second:    185.80 [#/sec] (mean)
+Time per request:       2691.135 [ms] (mean)
+Time per request:       5.382 [ms] (mean, across all concurrent requests)
+Transfer rate:          188.66 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   6.7      0      47
+Processing:    52 1507 2910.9   1211   53675
+Waiting:       51 1422 2865.0   1202   53675
+Total:         91 1508 2913.0   1212   53710
+
+Percentage of the requests served within a certain time (ms)
+  50%   1212
+  66%   1298
+  75%   1362
+  80%   1410
+  90%   1566
+  95%   2757
+  98%   5005
+  99%   5006
+ 100%  53710 (longest request)
 ```
 
 #### Swoole 1 000 / 10 000
