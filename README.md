@@ -184,7 +184,7 @@ A list of the test - please click on each test for more details and complete `ab
 
 Thanks to [tableconvert.com](https://tableconvert.com/)
 
-#### Result files
+#### Result files in ODS format
 - [All results](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results.ods)
 - [Results 100 concurrency](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_100.ods)
 - [Results 500 concurrnecy](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_500.ods)
@@ -226,4 +226,4 @@ Of course running actual code will produce different results.
 
 - [English documentation](http://swoole.co.uk) - some parts of the documentation are outdated.
 - [Chinese documentation](https://wiki.swoole.com/) - Google Translate does a decent job and I strongly recommend this resource. Besides current documentation there are also many technical details/advanced sections provided.
-- [Coroutines in Swoole](http://vesko.blogs.azonmedia.com/2019/09/19/coroutines-in-swoole/) - Introduction and examples by me in Coroutines in Swoole.
+- [Coroutines in Swoole](http://vesko.blogs.azonmedia.com/2019/09/19/coroutines-in-swoole/) - Introduction to Coroutines in Swoole.
