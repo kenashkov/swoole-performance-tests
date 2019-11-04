@@ -94,7 +94,7 @@ $http->on('request', function (Swoole\Http\Request $request, Swoole\Http\Respons
     if ($Pool === NULL) {
         $Pool = new Pool;
     }
-    
+
     //loop through many cached objects
     for ($aa = 0 ; $aa < 10000; $aa++) {
         if (empty($cache['test1_data'])) {
@@ -110,6 +110,7 @@ $http->on('request', function (Swoole\Http\Request $request, Swoole\Http\Respons
         }
         $data = $cache['test1_data'];
     }
+
     //write some files
     $file_content = 'some content here';
     for( $aa = 0; $aa < 10; $aa++) {
@@ -122,7 +123,7 @@ $http->on('request', function (Swoole\Http\Request $request, Swoole\Http\Respons
         $file_name = './files/swoole_'.$aa.'.txt';
         $file_content = Swoole\Coroutine\System::readFile($file_name);
     }
-    
+
     //do some DB reads
     $Connection = $Pool->get_connection(MysqlConnection::class);
     for ($aa = 0; $aa < 20; $aa++) {

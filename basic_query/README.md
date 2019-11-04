@@ -5,6 +5,8 @@ The test does a single query to the database and prints the result. No connectio
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **1804.08**
 - Apache/mod_php 100 / 10 000 - Requests per second: **1314.86**
+- Swoole 5000 / 10 000 - Not performed (due to number of DB connection)
+- Apache/mod_php 5000 / 10 000 - Not performed (due to number of DB connections)
 - Swoole 1 000 / 10 000 - Not performed (due to number of DB connection)
 - Apache/mod_php 1 000 / 10 000 - Not performed (due to number of DB connections)
 
@@ -58,22 +60,8 @@ Percentage of the requests served within a certain time (ms)
 #### Apache 100 / 10 000
 ```
 root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 100 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_query/apache.php
-This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
 
-Benchmarking 192.168.0.233 (be patient)
-Completed 1000 requests
-Completed 2000 requests
-Completed 3000 requests
-Completed 4000 requests
-Completed 5000 requests
-Completed 6000 requests
-Completed 7000 requests
-Completed 8000 requests
-Completed 9000 requests
-Completed 10000 requests
-Finished 10000 requests
+[...]
 
 
 Server Software:        Apache/2.4.25

@@ -24,7 +24,6 @@ function include_all_classes(string $path) {
             ) {
             continue;
         }
-        print 'G';
         require_once($path);
     }
     
@@ -33,10 +32,9 @@ function include_all_classes(string $path) {
 function include_random_classes(int $number_of_classes) {
     $available_classes = require_once('../include/available_classes.php');
     //print_r($available_classes);
-    $fk = array_key_first($available_classes);
-    $lk = array_key_last($available_classes);
+    $available_classes = array_values($available_classes);
     for ($aa=0 ; $aa < $number_of_classes ; $aa++) {
-        $r = rand($fk, $lk);
+        $r = rand(0, count($available_classes) - 1);
         $class_name = $available_classes[$r];
         class_exists($class_name);
         //new ReflectionClass($class_name);

@@ -6,9 +6,9 @@ require_once('../include/conn_settings.php');
 require_once('../include/functions.php');
 require_once('../zend_framework/vendor/autoload.php');
 
-include_random_classes(50);
+include_random_classes(100);
 
-for ($aa = 0; $aa < 500; $aa++) {
+for ($aa = 0; $aa < 1000; $aa++) {
     $data = apcu_fetch('test1_data', $success);
     if (!$success) {
 

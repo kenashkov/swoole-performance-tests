@@ -6,7 +6,7 @@ require_once('../include/conn_settings.php');
 require_once('../include/functions.php');
 require_once('../zend_framework/vendor/autoload.php');
 
-include_random_classes(50);
+include_random_classes(100);
 
 class Pool
 {
@@ -92,7 +92,7 @@ $http->on('request', function (Swoole\Http\Request $request, Swoole\Http\Respons
     }
 
     //loop through many cached objects
-    for ($aa = 0 ; $aa < 500; $aa++) {
+    for ($aa = 0 ; $aa < 1000; $aa++) {
         if (empty($cache['test1_data'])) {
             $Connection = $Pool->get_connection(MysqlConnection::class);
 
@@ -109,8 +109,8 @@ $http->on('request', function (Swoole\Http\Request $request, Swoole\Http\Respons
 
     //do some DB reads
     $Connection = $Pool->get_connection(MysqlConnection::class);
-    for ($aa = 0; $aa < 3; $aa++) {
-        $stmt = $Connection->prepare("SELECT * FROM test1)");//simple query
+    for ($aa = 0; $aa < 2; $aa++) {
+        $stmt = $Connection->prepare("SELECT * FROM test1");//simple query
         $sql_data = $stmt->execute();
     }
     $Pool->free_connection($Connection);

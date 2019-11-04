@@ -4,13 +4,12 @@
 
 Performance tests of [Swoole](https://www.swoole.co.uk/) against other PHP application server setups. Most of the tests are cumulative - meaning they include everything from the previous and add more.
 
-Apache `ab` tool is used for the tests. The non-informational and repeating part is cut and replaced with [...] in the outputs.
+Apache `ab` (ApacheBench, Version 2.3 <$Revision: 1430300 $>) is used for the tests. The non-informational and repeating part is cut and replaced with [...] in the outputs.
 
-Most tests are run with 100 requests per second (concurrency) and 10 000 requests (denoted 100 / 10 000 in the results) and/or 1 000 and 10 000 respectively (whenever possible/practical due to the high load). KeepAlive is also used on all tests (-k).
+Most tests are run with 100 requests per second (concurrency) and 10 000 requests (denoted 100 / 10 000 in the results), 500 / 10 000 and  1 000, and 10 000 (whenever possible/practical due to the high load).
+KeepAlive is also used on all tests (-k).
 
-It is important to note that in certain tests running multiple times `ab` against Apache/mod_php does show a little better results (up to 20% improvement). Because of this Apache/mod_php is always given "a second chance" in the tests below.
-
-There are also variations between the Swoole runs but these are smaller (about 10%). The average of these is taken for the results.
+As there is some cache related variance tor every test two runs are done and the highest one is taken.
 
 These tests are attempt to show different aspects of Swoole and also a comparison between Swoole and Apache/mod_php in tests close to real world applications.
 
@@ -55,58 +54,80 @@ The MySQL instance used for testing is MySQL 8 on another host in the same netwo
 
 A list of the test - please click on each test for more details and complete `ab` output:
 - [1] **[basic](./basic/)** - a "hello world" test
-  - Swoole 100 / 10 000 - Requests per second: **52678.71**
-  - Apache/mod_php 100 / 10 000 - Requests per second: **26008.41**
+  - Swoole 100 / 10 000 - Requests per second: **66308.60**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **25705.82** (see note - **1846.98**)
+  - Swoole 500 / 10 000 - Requests per second: **59658.75**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **1846.98** with **251 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **34923.27**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **1499.39** with **182 failed requests**
 - [2] **[basic_class_load](./basic_class_load/)** - [basic](./basic/) + contains 2 require_once() statements
   - Swoole 100 / 10 000 - Requests per second: **52451.86**
   - Apache/mod_php 100 / 10 000 - Requests per second: **11559.91**
+  - Swoole 100 / 10 000 - Requests per second: **41044.00**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **34662.77**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **1339.36** with **161 failed requests**
 - [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
   - Swoole 100 / 10 000 - Requests per second: **53625.63**
   - Apache/mod_php 100 / 10 000 - Requests per second: **2088.27** with **370 failed requests**
+  - Swoole 100 / 10 000 - Requests per second: **39887.20**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **993.03** with **202 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **35451.69**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **683.57** with **572 failed requests**
 - [4] **[basic_query](./basic_query/)** - a single DB query
   - Swoole 100 / 10 000 - Requests per second: **1804.08**
   - Apache/mod_php 100 / 10 000 - Requests per second: **1314.86**
+  - Swoole 5000 / 10 000 - Not performed (due to number of DB connection)
+  - Apache/mod_php 5000 / 10 000 - Not performed (due to number of DB connections)
   - Swoole 1 000 / 10 000 - Not performed (due to number of DB connection)
   - Apache/mod_php 1 000 / 10 000 - Not performed (due to number of DB connections)
 - [5] **[basic_query_with_pool](./basic_query_with_pool/)** - [basic_query](./basic_query/) + connection pooling (in Apache this is using persistent connections)
   - Swoole 100 / 10 000 - Requests per second: **4163.17**
   - Apache/mod_php 100 / 10 000 - Requests per second: **2327.34**
+  - Swoole 500 / 10 000 - Requests per second: **4279.57**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **1059.98** with **228 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **4326.38**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 9547 requests completed**
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
   - Swoole 100 / 10 000 - Requests per second: **53499.11**
   - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
+  - Swoole 100 / 10 000 - Requests per second: **41790.99**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **1831.16** with **237 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **38591.86**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **1535.84** with **107 failed requests**
 - [7] **[real_app_simulation](./real_app_simulation/)** - [basic_class_load_multiple](./basic_class_load_multiple/) + 10 000 cache reads
   - Swoole 100 / 10 000 - Requests per second: **15195.12**
   - Apache/mod_php 100 / 10 000 - Requests per second: **232.29** with **364 failed requests**
+  - Swoole 100 / 10 000 - Requests per second: **15771.75**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **197.06** with **554 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **14635.35**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1266 requests completed**
 - [8] **[real_app_simulation_with_files](./real_app_simulation_with_files/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 10 file writes and 10 file reads
   - Swoole 100 / 10 000 - Requests per second: **845.97**
   - Apache/mod_php 100 / 10 000 - Requests per second: **208.95** with **396 failed requests**
+  - Swoole 500 / 10 000 - Requests per second: **1372.28**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **185.80** with **603 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **1426.92**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1339 requests completed**
 - [9] **[real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/)** - [real_app_simulation_with_files](./real_app_simulation_with_files/) + 20 DB reads (pooled connection)
   - Swoole 100 / 10 000 - Requests per second: **285.91**
   - Apache/mod_php 100 / 10 000 - Requests per second: **134.77** with **396 failed requests**
+  - Swoole 500 / 10 000 - Requests per second: **285.32**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **122.17** with **640 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **314.33**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **108.94** with **558 failed requests**
 - [10] **[real_app_simulation_with_files_and_connections_simpler](./real_app_simulation_with_files_and_connections_simpler/)** - [real_app_simulation_with_files_and_connections](./real_app_simulation_with_files_and_connections/) but with less loaded classes and cache/file/db reads
   - Swoole 100 / 10 000 - Requests per second: **1919.86**
   - Apache/mod_php 100 / 10 000 - Requests per second: **1221.60** with **183 failed requests**
+  - Swoole 500 / 10 000 - Requests per second: **1824.30**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **737.43** with **414 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **1956.75**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 6776 completed requests**
 - [11] **[simple_real_app_simulation](./simple_real_app_simulation)** - 1000 reads from cache, loads 100 classes and performs 2 fast DB queries.
   - Swoole 100 / 10 000 - Requests per second: **2288.58**
   - Apache/mod_php 100 / 10 000 - Requests per second: **1057.52** with **355 failed requests**
+  - Swoole 500 / 10 000 - Requests per second: **2011.11**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **780.49** with **594 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **2228.23**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 7702 completed requests**
 
