@@ -1,5 +1,7 @@
 # Swoole performance tests and comparisons
 
+**[JUMP TO AGGREGATED RESULTS AND GRAPHS](https://github.com/kenashkov/swoole-performance-tests#aggregated-results-and-graphs)**
+
 ## Introduction
 
 Performance tests of [Swoole](https://www.swoole.co.uk/) against other PHP application server setups. Most of the tests are cumulative - meaning they include everything from the previous and add more.
