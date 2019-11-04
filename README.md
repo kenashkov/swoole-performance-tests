@@ -133,6 +133,10 @@ A list of the test - please click on each test for more details and complete `ab
 
 ## Aggregated results and Graphs
 
+Thanks to [tableconvert.com](https://tableconvert.com/)
+
+#### Requests per second and failed requests
+
 |                                                               | Swoole 100 \# reqs/sec | Swoole 100 \# failed reqs | Apache/mod\_php 100 \# reqs/sec | Apache/mod\_php 100 \# failed reqs | Swoole 500 \# reqs/sec | Swoole 500 \# failed reqs | Apache/mod\_php 500 \# reqs/sec | Apache/mod\_php 500 \# failed reqs | Swoole 1000 \# reqs/sec | Swoole 1000 \# failed reqs | Apache/mod\_php 1000 \# reqs/sec | Apache/mod\_php 1000 \# failed reqs |
 |---------------------------------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|-------------------------|----------------------------|----------------------------------|-------------------------------------|
 | basic                                                         | 66308\.6               | 0                         | 25705\.82                       | 0                                  | 59658\.75              | 0                         | 1846\.98                        | 251                                | 34923\.27               | 0                          | 1499\.39                         | 182                                 |
@@ -146,6 +150,22 @@ A list of the test - please click on each test for more details and complete `ab
 | real\_app\_simulation\_with\_files\_and\_connections          | 285\.91                | 0                         | 141\.24                         | 0                                  | 285\.32                | 0                         | 115\.82                         | 249                                | 314\.33                 | 0                          | FAILED                           | FAILED                              |
 | real\_app\_simulation\_with\_files\_and\_connections\_simpler | 1919\.86               | 0                         | 1194\.24                        | 0                                  | 1824\.3                | 0                         | 723\.21                         | 244                                | 1956\.75                | 0                          | 702\.33                          | 256                                 |
 | simple\_real\_app\_simulation                                 | 2288\.58               | 0                         | 1250\.36                        | 0                                  | 2011\.11               | 0                         | 774\.52                         | 196                                | 2228\.23                | 0                          | FAILED                           | FAILED                              |
+
+#### Requests per second only
+
+|                                                               | Swoole 100 \# reqs/sec | Apache/mod\_php 100 \# reqs/sec | Swoole 500 \# reqs/sec | Apache/mod\_php 500 \# reqs/sec | Swoole 1000 \# reqs/sec | Apache/mod\_php 1000 \# reqs/sec |
+|---------------------------------------------------------------|------------------------|---------------------------------|------------------------|---------------------------------|-------------------------|----------------------------------|
+| basic                                                         | 66308\.6               | 25705\.82                       | 59658\.75              | 1846\.98                        | 34923\.27               | 1499\.39                         |
+| basic\_class\_load                                            | 52451\.86              | 11559\.91                       | 41044                  | 1706\.33                        | 34662\.77               | 1339\.36                         |
+| basic\_class\_load\_multiple                                  | 53625\.63              | 2073\.61                        | 39887\.2               | 1010\.27                        | 35451\.69               | 1016\.76                         |
+| basic\_query                                                  | 1804\.08               | 1314\.86                        | NA                     | NA                              | NA                      | NA                               |
+| basic\_query\_with\_pool                                      | 4163\.17               | 2327\.34                        | 4279\.57               | 1059\.98                        | 4326\.38                | FAILED                           |
+| basic\_query\_with\_pool\_and\_caching                        | 53499\.11              | 25141\.67                       | 41790\.99              | 1831\.16                        | 38591\.86               | 1535\.84                         |
+| real\_app\_simulation                                         | 15195\.12              | 228\.51                         | 15771\.75              | 197\.57                         | 14635\.35               | FAILED                           |
+| real\_app\_simulation\_with\_files                            | 845\.97                | 220\.27                         | 1372\.28               | 196\.54                         | 1426\.92                | FAILED                           |
+| real\_app\_simulation\_with\_files\_and\_connections          | 285\.91                | 141\.24                         | 285\.32                | 115\.82                         | 314\.33                 | FAILED                           |
+| real\_app\_simulation\_with\_files\_and\_connections\_simpler | 1919\.86               | 1194\.24                        | 1824\.3                | 723\.21                         | 1956\.75                | 702\.33                          |
+| simple\_real\_app\_simulation                                 | 2288\.58               | 1250\.36                        | 2011\.11               | 774\.52                         | 2228\.23                | FAILED                           |
 
 
 [TBD]
