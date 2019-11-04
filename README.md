@@ -15,7 +15,9 @@ These tests are attempt to show different aspects of Swoole and also a compariso
 
 Please create a **Pull Request** if you think there is a mistake or there is a test you would like to add or more tuning to either Swoole or Apache that could/should be done.
 
-## Source
+**[JUMP TO AGGREGATED RESULTS AND GRAPHS](https://github.com/kenashkov/swoole-performance-tests#aggregated-results-and-graphs)**
+
+## Source code
 
 The below are given all the files needed to repeat the test.
 
@@ -133,9 +135,20 @@ A list of the test - please click on each test for more details and complete `ab
 
 ## Aggregated results and Graphs
 
-Thanks to [tableconvert.com](https://tableconvert.com/)
+#### All requests graph
+![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/combined_chart.png)
+
+#### concurrency 100 / requests 10 000 graph
+![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_100.png)
+
+#### concurrency 500 / requests 10 000 graph
+![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_500.png)
+
+#### concurrency 1 000 / requests 10 000 graph
+![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_1000.png)
 
 #### Requests per second and failed requests
+
 
 |                                                               | Swoole 100 \# reqs/sec | Swoole 100 \# failed reqs | Apache/mod\_php 100 \# reqs/sec | Apache/mod\_php 100 \# failed reqs | Swoole 500 \# reqs/sec | Swoole 500 \# failed reqs | Apache/mod\_php 500 \# reqs/sec | Apache/mod\_php 500 \# failed reqs | Swoole 1000 \# reqs/sec | Swoole 1000 \# failed reqs | Apache/mod\_php 1000 \# reqs/sec | Apache/mod\_php 1000 \# failed reqs |
 |---------------------------------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|-------------------------|----------------------------|----------------------------------|-------------------------------------|
@@ -167,8 +180,13 @@ Thanks to [tableconvert.com](https://tableconvert.com/)
 | real\_app\_sim\_with\_files\_and\_conn\_simpler | 1919\.86               | 1194\.24                        | 1824\.3                | 723\.21                         | 1956\.75                | 702\.33                          |
 | simple\_real\_app\_simulation                                 | 2288\.58               | 1250\.36                        | 2011\.11               | 774\.52                         | 2228\.23                | FAILED                           |
 
+Thanks to [tableconvert.com](https://tableconvert.com/)
 
-[TBD]
+#### Result files
+- [All results](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results.ods)
+- [Results 100 concurrency](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_100.ods)
+- [Results 500 concurrnecy](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_500.ods)
+- [Results 1 000 concurrency](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_1000.ods)
 
 ## Conclusion
 
