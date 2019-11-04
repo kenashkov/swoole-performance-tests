@@ -5,11 +5,11 @@ class_exists() triggers the autoload (in this case this is Composer's autoload).
 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **53625.63**
-- Apache/mod_php 100 / 10 000 - Requests per second: **2088.27** with **370 failed requests**
-- Swoole 100 / 10 000 - Requests per second: **39887.20**
-- Apache/mod_php 100 / 10 000 - Requests per second: **993.03** with **202 failed requests**
+- Apache/mod_php 100 / 10 000 - Requests per second: **2073.61**
+- Swoole 500 / 10 000 - Requests per second: **39887.20**
+- Apache/mod_php 500 / 10 000 - Requests per second: **1010.27** with **187 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **35451.69**
-- Apache/mod_php 1 000 / 10 000 - Requests per second: **683.57** with **572 failed requests**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **1016.76** with **238 failed requests**
 
 As in the [basic_class_load test](../basic_class_load) Apache/mod_php is sufferring from the multiple autoloading. Apache shows high failure rate.
 
@@ -58,7 +58,7 @@ Percentage of the requests served within a certain time (ms)
  100%     10 (longest request)
 ```
 
-#### Apache with 100 / 10 000
+#### Apache/mod_php with 100 / 10 000
 ```
 root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 100 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_class_load_multiple/apache.php
 
@@ -72,36 +72,35 @@ Document Path:          /swoole_tests/swoole-performance-tests/basic_class_load_
 Document Length:        2 bytes
 
 Concurrency Level:      100
-Time taken for tests:   4.789 seconds
+Time taken for tests:   4.823 seconds
 Complete requests:      10000
-Failed requests:        370
-   (Connect: 0, Receive: 0, Length: 370, Exceptions: 0)
+Failed requests:        0
 Write errors:           0
-Keep-Alive requests:    9950
-Total transferred:      2472132 bytes
-HTML transferred:       185020 bytes
-Requests per second:    2088.27 [#/sec] (mean)
-Time per request:       47.886 [ms] (mean)
-Time per request:       0.479 [ms] (mean, across all concurrent requests)
-Transfer rate:          504.15 [Kbytes/sec] received
+Keep-Alive requests:    9958
+Total transferred:      2298159 bytes
+HTML transferred:       20000 bytes
+Requests per second:    2073.61 [#/sec] (mean)
+Time per request:       48.225 [ms] (mean)
+Time per request:       0.482 [ms] (mean, across all concurrent requests)
+Transfer rate:          465.38 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   1.5      0      19
-Processing:     5   47  34.0     42     339
-Waiting:        4   47  34.0     42     339
-Total:          5   48  34.0     42     339
+Connect:        0    0   1.8      0      24
+Processing:     5   48  28.2     45     215
+Waiting:        4   48  28.1     45     215
+Total:          5   48  28.2     45     215
 
 Percentage of the requests served within a certain time (ms)
-  50%     42
-  66%     53
-  75%     61
-  80%     67
-  90%     86
-  95%    106
-  98%    139
-  99%    177
- 100%    339 (longest request)
+  50%     45
+  66%     55
+  75%     63
+  80%     68
+  90%     85
+  95%    101
+  98%    122
+  99%    136
+ 100%    215 (longest request)
 ```
 #### Swoole 500 / 10 000
 ```
@@ -147,7 +146,7 @@ Percentage of the requests served within a certain time (ms)
   99%     50
  100%     56 (longest request)
 ```
-#### Apache 500 / 10 000
+#### Apache/mod_php 500 / 10 000
 ```
 root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 500 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_class_load_multiple/apache.php
 
@@ -161,36 +160,36 @@ Document Path:          /swoole_tests/swoole-performance-tests/basic_class_load_
 Document Length:        2 bytes
 
 Concurrency Level:      500
-Time taken for tests:   10.070 seconds
+Time taken for tests:   9.898 seconds
 Complete requests:      10000
-Failed requests:        202
-   (Connect: 0, Receive: 0, Length: 202, Exceptions: 0)
+Failed requests:        187
+   (Connect: 0, Receive: 0, Length: 187, Exceptions: 0)
 Write errors:           0
-Keep-Alive requests:    9780
-Total transferred:      2253164 bytes
-HTML transferred:       19598 bytes
-Requests per second:    993.03 [#/sec] (mean)
-Time per request:       503.508 [ms] (mean)
-Time per request:       1.007 [ms] (mean, across all concurrent requests)
-Transfer rate:          218.50 [Kbytes/sec] received
+Keep-Alive requests:    9808
+Total transferred:      2257076 bytes
+HTML transferred:       19626 bytes
+Requests per second:    1010.27 [#/sec] (mean)
+Time per request:       494.916 [ms] (mean)
+Time per request:       0.990 [ms] (mean, across all concurrent requests)
+Transfer rate:          222.68 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    7 130.4      0    3009
-Processing:     4  268 956.4     75    9998
-Waiting:        4  170 677.3     74    9998
-Total:          4  275 1009.4     75   10043
+Connect:        0    1   7.4      0      57
+Processing:     4  278 1095.7     78    9824
+Waiting:        4  187 881.5     77    9824
+Total:          4  280 1099.9     78    9881
 
 Percentage of the requests served within a certain time (ms)
-  50%     75
-  66%    105
-  75%    123
-  80%    137
-  90%    195
-  95%    320
-  98%   5005
-  99%   5009
- 100%  10043 (longest request)
+  50%     78
+  66%     99
+  75%    114
+  80%    124
+  90%    161
+  95%    221
+  98%   5006
+  99%   5229
+ 100%   9881 (longest request)
 ```
 #### Swoole 1 000 / 10 000
 ```
@@ -236,7 +235,7 @@ Percentage of the requests served within a certain time (ms)
   99%     88
  100%     94 (longest request)
 ```
-#### Apache 1 000 / 10 000
+#### Apache/mod_php 1 000 / 10 000
 ```
 root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/basic_class_load_multiple/apache.php
 
@@ -250,34 +249,34 @@ Document Path:          /swoole_tests/swoole-performance-tests/basic_class_load_
 Document Length:        2 bytes
 
 Concurrency Level:      1000
-Time taken for tests:   14.629 seconds
+Time taken for tests:   9.835 seconds
 Complete requests:      10000
-Failed requests:        572
-   (Connect: 0, Receive: 0, Length: 572, Exceptions: 0)
+Failed requests:        238
+   (Connect: 0, Receive: 0, Length: 238, Exceptions: 0)
 Write errors:           0
-Keep-Alive requests:    9724
-Total transferred:      2430106 bytes
-HTML transferred:       188200 bytes
-Requests per second:    683.57 [#/sec] (mean)
-Time per request:       1462.898 [ms] (mean)
-Time per request:       1.463 [ms] (mean, across all concurrent requests)
-Transfer rate:          162.22 [Kbytes/sec] received
+Keep-Alive requests:    9762
+Total transferred:      2245556 bytes
+HTML transferred:       19524 bytes
+Requests per second:    1016.76 [#/sec] (mean)
+Time per request:       983.514 [ms] (mean)
+Time per request:       0.984 [ms] (mean, across all concurrent requests)
+Transfer rate:          222.97 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0   37 325.4      0    3011
-Processing:     3  342 1505.9      5   12884
-Waiting:        0  336 1511.0      5   12884
-Total:          3  379 1691.2      5   12959
+Connect:        0    2  11.8      0      82
+Processing:     5  278 956.4    119    9713
+Waiting:        4  161 607.0    117    9713
+Total:          5  280 958.6    120    9777
 
 Percentage of the requests served within a certain time (ms)
-  50%      5
-  66%      6
-  75%      7
-  80%      9
-  90%     22
-  95%   3848
-  98%   5747
-  99%  10812
- 100%  12959 (longest request)
+  50%    120
+  66%    147
+  75%    165
+  80%    177
+  90%    215
+  95%    262
+  98%   5006
+  99%   5016
+ 100%   9777 (longest request)
 ```

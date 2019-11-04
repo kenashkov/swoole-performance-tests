@@ -4,11 +4,11 @@ This test is [real_app_simluation_with_files](../real_app_simulation_with_files/
 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **285.91**
-- Apache/mod_php 100 / 10 000 - Requests per second: **134.77** with **396 failed requests**
+- Apache/mod_php 100 / 10 000 - Requests per second: **141.24**
 - Swoole 500 / 10 000 - Requests per second: **285.32**
-- Apache/mod_php 500 / 10 000 - Requests per second: **122.17** with **640 failed requests**
+- Apache/mod_php 500 / 10 000 - Requests per second: **115.82** with **249 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **314.33**
-- Apache/mod_php 1 000 / 10 000 - Requests per second: **108.94** with **558 failed requests**
+- Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1159 requests completed**
 
 When running this test please make sure the ./files directory is writable by Swoole and Apache.
 
@@ -70,39 +70,39 @@ Server Hostname:        192.168.0.233
 Server Port:            8083
 
 Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulation_with_files_and_connections/apache.php
-Document Length:        1010 bytes
+Document Length:        3282 bytes
 
 Concurrency Level:      100
-Time taken for tests:   74.201 seconds
+Time taken for tests:   70.801 seconds
 Complete requests:      10000
-Failed requests:        9992
-   (Connect: 0, Receive: 0, Length: 9992, Exceptions: 0)
+Failed requests:        0
 Write errors:           0
-Keep-Alive requests:    9965
-Total transferred:      10606447 bytes
-HTML transferred:       8077834 bytes
-Requests per second:    134.77 [#/sec] (mean)
-Time per request:       742.006 [ms] (mean)
-Time per request:       7.420 [ms] (mean, across all concurrent requests)
-Transfer rate:          139.59 [Kbytes/sec] received
+Keep-Alive requests:    9956
+Total transferred:      35357722 bytes
+HTML transferred:       32820000 bytes
+Requests per second:    141.24 [#/sec] (mean)
+Time per request:       708.011 [ms] (mean)
+Time per request:       7.080 [ms] (mean, across all concurrent requests)
+Transfer rate:          487.69 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   0.9      0      10
-Processing:   237  736 493.5    753    7071
-Waiting:      236  736 493.5    753    7071
-Total:        237  736 494.3    753    7079
+Connect:        0    0   2.1      0      25
+Processing:   240  703 132.3    732    1290
+Waiting:      240  703 132.3    732    1290
+Total:        240  703 132.8    732    1314
 
 Percentage of the requests served within a certain time (ms)
-  50%    753
-  66%    798
-  75%    822
-  80%    837
-  90%    871
-  95%    900
-  98%    987
-  99%   1314
- 100%   7079 (longest request)
+  50%    732
+  66%    759
+  75%    774
+  80%    784
+  90%    812
+  95%    840
+  98%    866
+  99%    898
+ 100%   1314 (longest request)
+
 ```
 #### Swoole 500 / 10 000
 ```
@@ -162,36 +162,36 @@ Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulati
 Document Length:        3282 bytes
 
 Concurrency Level:      500
-Time taken for tests:   81.851 seconds
+Time taken for tests:   86.339 seconds
 Complete requests:      10000
-Failed requests:        640
-   (Connect: 0, Receive: 0, Length: 640, Exceptions: 0)
+Failed requests:        249
+   (Connect: 0, Receive: 0, Length: 249, Exceptions: 0)
 Write errors:           0
 Keep-Alive requests:    9756
-Total transferred:      34674088 bytes
-HTML transferred:       32195808 bytes
-Requests per second:    122.17 [#/sec] (mean)
-Time per request:       4092.561 [ms] (mean)
-Time per request:       8.185 [ms] (mean, across all concurrent requests)
-Transfer rate:          413.69 [Kbytes/sec] received
+Total transferred:      34497472 bytes
+HTML transferred:       32019192 bytes
+Requests per second:    115.82 [#/sec] (mean)
+Time per request:       4316.953 [ms] (mean)
+Time per request:       8.634 [ms] (mean, across all concurrent requests)
+Transfer rate:          390.19 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    1   5.7      0      45
-Processing:   278 2076 848.5   2193    6394
-Waiting:      252 2006 725.5   2188    6394
-Total:        278 2077 849.1   2193    6422
+Connect:        0    5 120.2      0    3007
+Processing:   272 2179 1009.8   2322   10326
+Waiting:      259 2101 916.7   2313   10326
+Total:        272 2184 1041.9   2322   10373
 
 Percentage of the requests served within a certain time (ms)
-  50%   2193
-  66%   2364
-  75%   2464
-  80%   2526
-  90%   2685
-  95%   2790
+  50%   2322
+  66%   2448
+  75%   2511
+  80%   2547
+  90%   2676
+  95%   2807
   98%   5005
-  99%   5007
- 100%   6422 (longest request)
+  99%   5922
+ 100%  10373 (longest request)
 ```
 #### Swoole 1 000 / 10 000
 ```
@@ -239,46 +239,13 @@ Percentage of the requests served within a certain time (ms)
 ```
 #### Apache 1 000 / 10 000
 ```
-root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/real_app_simulation_with_files_and_connections/apache.php
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -s 120 -c 1000 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/real_app_simulation_with_files_and_connections/apache.php
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
 
-[...]
-
-Server Software:        Apache/2.4.25
-Server Hostname:        192.168.0.233
-Server Port:            8083
-
-Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulation_with_files_and_connections/apache.php
-Document Length:        792 bytes
-
-Concurrency Level:      1000
-Time taken for tests:   91.791 seconds
-Complete requests:      10000
-Failed requests:        558
-   (Connect: 0, Receive: 0, Length: 558, Exceptions: 0)
-Write errors:           0
-Keep-Alive requests:    9778
-Total transferred:      10368075 bytes
-HTML transferred:       7893586 bytes
-Requests per second:    108.94 [#/sec] (mean)
-Time per request:       9179.112 [ms] (mean)
-Time per request:       9.179 [ms] (mean, across all concurrent requests)
-Transfer rate:          110.31 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    5 123.9      0    7011
-Processing:   236 2889 7189.7   2424   90905
-Waiting:      236 2814 7185.2   2395   90905
-Total:        236 2894 7199.1   2424   90972
-
-Percentage of the requests served within a certain time (ms)
-  50%   2424
-  66%   2562
-  75%   2635
-  80%   2714
-  90%   2889
-  95%   6038
-  98%   8733
-  99%  11675
- 100%  90972 (longest request)
+Benchmarking 192.168.0.233 (be patient)
+Completed 1000 requests
+apr_socket_recv: Connection reset by peer (104)
+Total of 1159 requests completed
 ```

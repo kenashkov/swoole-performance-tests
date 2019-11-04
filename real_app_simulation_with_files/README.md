@@ -4,9 +4,9 @@ This test is [real_app_simluation](../real_app_simulation/) with 10 file reads a
 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **845.97**
-- Apache/mod_php 100 / 10 000 - Requests per second: **208.95** with **396 failed requests**
+- Apache/mod_php 100 / 10 000 - Requests per second: **220.27**
 - Swoole 500 / 10 000 - Requests per second: **1372.28**
-- Apache/mod_php 500 / 10 000 - Requests per second: **185.80** with **603 failed requests**
+- Apache/mod_php 500 / 10 000 - Requests per second: **196.54** with **222 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **1426.92**
 - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1339 requests completed**
 
@@ -67,39 +67,38 @@ Server Hostname:        192.168.0.233
 Server Port:            8083
 
 Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulation_with_files/apache.php
-Document Length:        5532 bytes
+Document Length:        792 bytes
 
 Concurrency Level:      100
-Time taken for tests:   43.492 seconds
+Time taken for tests:   45.398 seconds
 Complete requests:      10000
-Failed requests:        382
-   (Connect: 0, Receive: 0, Length: 382, Exceptions: 0)
+Failed requests:        0
 Write errors:           0
-Keep-Alive requests:    9919
-Total transferred:      58026811 bytes
-HTML transferred:       55490372 bytes
-Requests per second:    229.93 [#/sec] (mean)
-Time per request:       434.916 [ms] (mean)
-Time per request:       4.349 [ms] (mean, across all concurrent requests)
-Transfer rate:          1302.94 [Kbytes/sec] received
+Keep-Alive requests:    9930
+Total transferred:      10446919 bytes
+HTML transferred:       7920000 bytes
+Requests per second:    220.27 [#/sec] (mean)
+Time per request:       453.983 [ms] (mean)
+Time per request:       4.540 [ms] (mean, across all concurrent requests)
+Transfer rate:          224.72 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   1.6      0      18
-Processing:    48  434 135.0    431    4843
-Waiting:       38  433 135.0    431    4843
-Total:         49  434 135.7    431    4860
+Connect:        0    0   1.9      0      22
+Processing:    71  453 219.2    442    5504
+Waiting:       60  452 219.2    442    5504
+Total:         71  453 220.1    443    5526
 
 Percentage of the requests served within a certain time (ms)
-  50%    431
-  66%    438
-  75%    442
-  80%    445
-  90%    453
-  95%    461
-  98%    470
-  99%    477
- 100%   4860 (longest request)
+  50%    443
+  66%    481
+  75%    507
+  80%    522
+  90%    566
+  95%    601
+  98%    642
+  99%    681
+ 100%   5526 (longest request)
 ```
 
 #### Swoole 500 / 10 000
@@ -160,36 +159,36 @@ Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulati
 Document Length:        792 bytes
 
 Concurrency Level:      500
-Time taken for tests:   53.823 seconds
+Time taken for tests:   50.881 seconds
 Complete requests:      10000
-Failed requests:        603
-   (Connect: 0, Receive: 0, Length: 603, Exceptions: 0)
+Failed requests:        222
+   (Connect: 0, Receive: 0, Length: 222, Exceptions: 0)
 Write errors:           0
-Keep-Alive requests:    9785
-Total transferred:      10397705 bytes
-HTML transferred:       7921430 bytes
-Requests per second:    185.80 [#/sec] (mean)
-Time per request:       2691.135 [ms] (mean)
-Time per request:       5.382 [ms] (mean, across all concurrent requests)
-Transfer rate:          188.66 [Kbytes/sec] received
+Keep-Alive requests:    9778
+Total transferred:      10218288 bytes
+HTML transferred:       7744176 bytes
+Requests per second:    196.54 [#/sec] (mean)
+Time per request:       2544.066 [ms] (mean)
+Time per request:       5.088 [ms] (mean, across all concurrent requests)
+Transfer rate:          196.12 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    1   6.7      0      47
-Processing:    52 1507 2910.9   1211   53675
-Waiting:       51 1422 2865.0   1202   53675
-Total:         91 1508 2913.0   1212   53710
+Connect:        0    1   6.8      0      58
+Processing:   110 1389 2430.5   1169   50745
+Waiting:       51 1301 2369.2   1160   50745
+Total:        110 1390 2433.6   1170   50802
 
 Percentage of the requests served within a certain time (ms)
-  50%   1212
-  66%   1298
-  75%   1362
-  80%   1410
-  90%   1566
-  95%   2757
+  50%   1170
+  66%   1262
+  75%   1332
+  80%   1388
+  90%   1553
+  95%   1730
   98%   5005
-  99%   5006
- 100%  53710 (longest request)
+  99%   5007
+ 100%  50802 (longest request)
 ```
 
 #### Swoole 1 000 / 10 000

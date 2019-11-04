@@ -6,9 +6,9 @@ There is also a Pool class but this is not really used - only for the first conn
 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **15195.12**
-- Apache/mod_php 100 / 10 000 - Requests per second: **232.29** with **364 failed requests**
+- Apache/mod_php 100 / 10 000 - Requests per second: **228.51**
 - Swoole 100 / 10 000 - Requests per second: **15771.75**
-- Apache/mod_php 100 / 10 000 - Requests per second: **197.06** with **554 failed requests**
+- Apache/mod_php 100 / 10 000 - Requests per second: **197.57** with **153 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **14635.35**
 - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 1266 requests completed**
 
@@ -72,36 +72,35 @@ Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulati
 Document Length:        792 bytes
 
 Concurrency Level:      100
-Time taken for tests:   43.050 seconds
+Time taken for tests:   43.762 seconds
 Complete requests:      10000
-Failed requests:        364
-   (Connect: 0, Receive: 0, Length: 364, Exceptions: 0)
+Failed requests:        0
 Write errors:           0
-Keep-Alive requests:    9976
-Total transferred:      10611714 bytes
-HTML transferred:       8082344 bytes
-Requests per second:    232.29 [#/sec] (mean)
-Time per request:       430.500 [ms] (mean)
-Time per request:       4.305 [ms] (mean, across all concurrent requests)
-Transfer rate:          240.72 [Kbytes/sec] received
+Keep-Alive requests:    9973
+Total transferred:      10448837 bytes
+HTML transferred:       7920000 bytes
+Requests per second:    228.51 [#/sec] (mean)
+Time per request:       437.618 [ms] (mean)
+Time per request:       4.376 [ms] (mean, across all concurrent requests)
+Transfer rate:          233.17 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   0.7      0       9
-Processing:    31  429 551.2    418    7461
-Waiting:       31  429 551.2    418    7461
-Total:         31  429 551.8    418    7466
+Connect:        0    0   1.7      0      21
+Processing:    52  436 479.5    425    7077
+Waiting:       42  436 479.5    425    7077
+Total:         52  436 481.0    425    7098
 
 Percentage of the requests served within a certain time (ms)
-  50%    418
-  66%    434
-  75%    446
-  80%    455
-  90%    482
-  95%    513
-  98%    546
-  99%    642
- 100%   7466 (longest request)
+  50%    425
+  66%    444
+  75%    459
+  80%    468
+  90%    499
+  95%    529
+  98%    565
+  99%    616
+ 100%   7098 (longest request)
 ```
 #### Swoole 500 / 10 000
 ```
@@ -149,7 +148,7 @@ Percentage of the requests served within a certain time (ms)
 ```
 #### Apache 500 / 10 000
 ```
-root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -c 500 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/real_app_simulation/apache.php
+root@vesko-dev /home/local/swoole_tests/swoole-performance-tests (master) # ab -s 120 -c 500 -n 10000 -k http://192.168.0.233:8083/swoole_tests/swoole-performance-tests/real_app_simulation/apache.php
 
 [...]
 
@@ -161,36 +160,36 @@ Document Path:          /swoole_tests/swoole-performance-tests/real_app_simulati
 Document Length:        792 bytes
 
 Concurrency Level:      500
-Time taken for tests:   50.746 seconds
+Time taken for tests:   50.616 seconds
 Complete requests:      10000
-Failed requests:        554
-   (Connect: 0, Receive: 0, Length: 554, Exceptions: 0)
+Failed requests:        153
+   (Connect: 0, Receive: 0, Length: 153, Exceptions: 0)
 Write errors:           0
-Keep-Alive requests:    9813
-Total transferred:      10434886 bytes
-HTML transferred:       7949196 bytes
-Requests per second:    197.06 [#/sec] (mean)
-Time per request:       2537.281 [ms] (mean)
-Time per request:       5.075 [ms] (mean, across all concurrent requests)
-Transfer rate:          200.81 [Kbytes/sec] received
+Keep-Alive requests:    9847
+Total transferred:      10290462 bytes
+HTML transferred:       7798824 bytes
+Requests per second:    197.57 [#/sec] (mean)
+Time per request:       2530.807 [ms] (mean)
+Time per request:       5.062 [ms] (mean, across all concurrent requests)
+Transfer rate:          198.54 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    8 158.7      0    7017
-Processing:    29 1632 4461.3   1178   50655
-Waiting:       29 1564 4438.8   1175   50655
-Total:         29 1640 4474.9   1178   50687
+Connect:        0    1   5.1      0      38
+Processing:    33 1697 5034.9   1067   50532
+Waiting:       33 1639 5018.2   1065   50532
+Total:         61 1698 5038.8   1067   50567
 
 Percentage of the requests served within a certain time (ms)
-  50%   1178
-  66%   1216
-  75%   1239
-  80%   1256
-  90%   1314
-  95%   1545
-  98%   8075
-  99%  13653
- 100%  50687 (longest request)
+  50%   1067
+  66%   1181
+  75%   1254
+  80%   1299
+  90%   1439
+  95%   1596
+  98%   5006
+  99%  21089
+ 100%  50567 (longest request)
 ```
 #### Swoole 1 000 / 10 000
 ```
