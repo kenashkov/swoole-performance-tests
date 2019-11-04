@@ -137,6 +137,8 @@ A list of the test - **please click on each test for more details** and complete
 
 ## Aggregated results and Graphs
 
+The given graphs show just the number of served requests per second but do not show the number of failed requests (these are shown in the table and "All results" file given below).
+
 #### All requests graph
 ![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/combined_chart.png)
 
