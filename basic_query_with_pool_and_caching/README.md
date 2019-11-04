@@ -6,7 +6,7 @@ This load basically compares the unserialization speed and APCu read spead versu
 
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **53499.11**
-- Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
+- Apache/mod_php 100 / 10 000 - Requests per second: **25141.67** (note: many tests are in the range of 1900-2000)
 - Swoole 100 / 10 000 - Requests per second: **41790.99**
 - Apache/mod_php 100 / 10 000 - Requests per second: **1831.16** with **237 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **38591.86**

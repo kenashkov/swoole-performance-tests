@@ -63,8 +63,8 @@ A list of the test - please click on each test for more details and complete `ab
 - [2] **[basic_class_load](./basic_class_load/)** - [basic](./basic/) + contains 2 require_once() statements
   - Swoole 100 / 10 000 - Requests per second: **52451.86**
   - Apache/mod_php 100 / 10 000 - Requests per second: **11559.91**
-  - Swoole 100 / 10 000 - Requests per second: **41044.00**
-  - Apache/mod_php 100 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
+  - Swoole 500 / 10 000 - Requests per second: **41044.00**
+  - Apache/mod_php 500 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **34662.77**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **1339.36** with **161 failed requests**
 - [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
@@ -90,7 +90,7 @@ A list of the test - please click on each test for more details and complete `ab
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed, 9547 requests completed**
 - [6] **[basic_query_with_pool_and_caching](./basic_query_with_pool_and_caching)** - reading cashed results (the query matters only for the first read so does not really rely on basic_query_with_pool)
   - Swoole 100 / 10 000 - Requests per second: **53499.11**
-  - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67**
+  - Apache/mod_php 100 / 10 000 - Requests per second: **25141.67** (note: many tests are in the range of 1900-2000)
   - Swoole 100 / 10 000 - Requests per second: **41790.99**
   - Apache/mod_php 100 / 10 000 - Requests per second: **1831.16** with **237 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **38591.86**
@@ -132,6 +132,21 @@ A list of the test - please click on each test for more details and complete `ab
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **failed with 7702 completed requests**
 
 ## Aggregated results and Graphs
+
+|                                                               | Swoole 100 \# reqs/sec | Swoole 100 \# failed reqs | Apache/mod\_php 100 \# reqs/sec | Apache/mod\_php 100 \# failed reqs | Swoole 500 \# reqs/sec | Swoole 500 \# failed reqs | Apache/mod\_php 500 \# reqs/sec | Apache/mod\_php 500 \# failed reqs | Swoole 1000 \# reqs/sec | Swoole 1000 \# failed reqs | Apache/mod\_php 1000 \# reqs/sec | Apache/mod\_php 1000 \# failed reqs |
+|---------------------------------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|------------------------|---------------------------|---------------------------------|------------------------------------|-------------------------|----------------------------|----------------------------------|-------------------------------------|
+| basic                                                         | 66308\.6               | 0                         | 25705\.82                       | 0                                  | 59658\.75              | 0                         | 1846\.98                        | 251                                | 34923\.27               | 0                          | 1499\.39                         | 182                                 |
+| basic\_class\_load                                            | 52451\.86              | 0                         | 11559\.91                       | 0                                  | 41044                  | 0                         | 1706\.33                        | 144                                | 34662\.77               | 0                          | 1339\.36                         | 161                                 |
+| basic\_class\_load\_multiple                                  | 53625\.63              | 0                         | 2073\.61                        | 0                                  | 39887\.2               | 0                         | 1010\.27                        | 187                                | 35451\.69               | 0                          | 1016\.76                         | 238                                 |
+| basic\_query                                                  | 1804\.08               | 0                         | 1314\.86                        | 0                                  | NA                     | NA                        | NA                              | NA                                 | NA                      | NA                         | NA                               | NA                                  |
+| basic\_query\_with\_pool                                      | 4163\.17               | 0                         | 2327\.34                        | 0                                  | 4279\.57               | 0                         | 1059\.98                        | 228                                | 4326\.38                | 0                          | FAILED                           | FAILED                              |
+| basic\_query\_with\_pool\_and\_caching                        | 53499\.11              | 0                         | 25141\.67                       | 0                                  | 41790\.99              | 0                         | 1831\.16                        | 237                                | 38591\.86               | 0                          | 1535\.84                         | 107                                 |
+| real\_app\_simulation                                         | 15195\.12              | 0                         | 228\.51                         | 0                                  | 15771\.75              | 0                         | 197\.57                         | 153                                | 14635\.35               | 0                          | FAILED                           | FAILED                              |
+| real\_app\_simulation\_with\_files                            | 845\.97                | 0                         | 220\.27                         | 0                                  | 1372\.28               | 0                         | 196\.54                         | 222                                | 1426\.92                | 0                          | FAILED                           | FAILED                              |
+| real\_app\_simulation\_with\_files\_and\_connections          | 285\.91                | 0                         | 141\.24                         | 0                                  | 285\.32                | 0                         | 115\.82                         | 249                                | 314\.33                 | 0                          | FAILED                           | FAILED                              |
+| real\_app\_simulation\_with\_files\_and\_connections\_simpler | 1919\.86               | 0                         | 1194\.24                        | 0                                  | 1824\.3                | 0                         | 723\.21                         | 244                                | 1956\.75                | 0                          | 702\.33                          | 256                                 |
+| simple\_real\_app\_simulation                                 | 2288\.58               | 0                         | 1250\.36                        | 0                                  | 2011\.11               | 0                         | 774\.52                         | 196                                | 2228\.23                | 0                          | FAILED                           | FAILED                              |
+
 
 [TBD]
 

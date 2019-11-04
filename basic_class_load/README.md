@@ -5,8 +5,8 @@ This test has two require_once() statements.
 The results are:
 - Swoole 100 / 10 000 - Requests per second: **52451.86**
 - Apache/mod_php 100 / 10 000 - Requests per second: **11559.91**
-- Swoole 100 / 10 000 - Requests per second: **41044.00**
-- Apache/mod_php 100 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
+- Swoole 500 / 10 000 - Requests per second: **41044.00**
+- Apache/mod_php 500 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
 - Swoole 1 000 / 10 000 - Requests per second: **34662.77**
 - Apache/mod_php 1 000 / 10 000 - Requests per second: **1339.36** with **161 failed requests**
 
