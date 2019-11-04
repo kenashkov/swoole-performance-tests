@@ -24,8 +24,8 @@ Please create a **Pull Request** if you think there is a mistake or there is a t
 The below are given all the files needed to repeat the test.
 
 - [PHP test files](https://github.com/kenashkov/swoole-performance-tests/)
-- [MySQL dump](https://github.com/kenashkov/swoole-performance-tests/blob/master/test_db_dump.sql) - needed for the test connection
-- [MySQL connection settings](https://github.com/kenashkov/swoole-performance-tests/blob/master/conn_settings.php) - need to be updated in this file
+- [MySQL dump](./blob/master/test_db_dump.sql) - needed for the test connection
+- [MySQL connection settings](./blob/master/conn_settings.php) - need to be updated in this file
 - [Docker images](https://cloud.docker.com/u/kenashkov/repository/docker/kenashkov/php-tests)
 - [Dockerfiles](https://github.com/kenashkov/php-tests-dockerfiles)
 - [Zend Framework](https://framework.zend.com/downloads) - to be installed under ./zend_framework with `composer require zendframework/zendframework` for test purpose
@@ -56,7 +56,7 @@ The MySQL instance used for testing is MySQL 8 on another host in the same netwo
 
 ## Tests and results
 
-A list of the test - please click on each test for more details and complete `ab` output:
+A list of the test - **please click on each test for more details** and complete `ab` output:
 - [1] **[basic](./basic/)** - a "hello world" test
   - Swoole 100 / 10 000 - Requests per second: **66308.60**
   - Apache/mod_php 100 / 10 000 - Requests per second: **25705.82** (see note - **1846.98**)
@@ -138,16 +138,16 @@ A list of the test - please click on each test for more details and complete `ab
 ## Aggregated results and Graphs
 
 #### All requests graph
-![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/combined_chart.png)
+![](./blob/master/results/combined_chart.png)
 
 #### concurrency 100 / requests 10 000 graph
-![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_100.png)
+![](./blob/master/results/graph_requests_100.png)
 
 #### concurrency 500 / requests 10 000 graph
-![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_500.png)
+![](./blob/master/results/graph_requests_500.png)
 
 #### concurrency 1 000 / requests 10 000 graph
-![](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/graph_requests_1000.png)
+![](./blob/master/results/graph_requests_1000.png)
 
 #### Requests per second and failed requests
 
@@ -185,10 +185,10 @@ A list of the test - please click on each test for more details and complete `ab
 Thanks to [tableconvert.com](https://tableconvert.com/)
 
 #### Result files in ODS format
-- [All results](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results.ods)
-- [Results 100 concurrency](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_100.ods)
-- [Results 500 concurrnecy](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_500.ods)
-- [Results 1 000 concurrency](https://github.com/kenashkov/swoole-performance-tests/blob/master/results/results_requests_1000.ods)
+- [All results](./blob/master/results/results.ods)
+- [Results 100 concurrency](./blob/master/results/results_requests_100.ods)
+- [Results 500 concurrnecy](./blob/master/results/results_requests_500.ods)
+- [Results 1 000 concurrency](./blob/master/results/results_requests_1000.ods)
 
 ## Conclusion
 
