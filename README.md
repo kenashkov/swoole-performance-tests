@@ -208,7 +208,7 @@ Also both these tests show more requests served under higher load - this I attri
 - test [11] is just a representation of what a real world Swoole application should aim to be - use as much as possible caching and few IO operations. The amount of loaded classes does not affect the performance. 
 
 Overall conclusion:
-- in simple applications or microservices Swoole will excel as these will be mostly cached. Swoole leads here as it loads the classes only ones and can use memory for all the caching.
+- in simple applications or microservices Swoole will excel as these will be mostly cached. Swoole leads here as it loads the classes only once and can use memory for all the caching.
 - In more complex applications the difference between Swoole and Apache/mod_php is about 1.8-2 times - this is due to the fact that the speed is greatly reduced by the IO operations. Swoole is still more efficient here due to the coroutines.
 If the application can be optimized to use caching as much as possible Swoole will perform better as there is no serialization/unserialization and access to external storage (be it even shared memory access).
 An app/service that uses mostly caching and perhaps a single fast read IO operation can be scaled to 4-5 000 requests per second.
