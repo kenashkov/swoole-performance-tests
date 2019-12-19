@@ -26,7 +26,7 @@ The below are given all the files needed to repeat the test.
 - [PHP test files](https://github.com/kenashkov/swoole-performance-tests/)
 - [MySQL dump](https://github.com/kenashkov/swoole-performance-tests/blob/master/test_db_dump.sql) - needed for the test connection
 - [MySQL connection settings](https://github.com/kenashkov/swoole-performance-tests/blob/master/conn_settings.php) - need to be updated in this file
-- [Docker images](https://cloud.docker.com/u/kenashkov/repository/docker/kenashkov/php-tests)
+- [Docker images](https://hub.docker.com/r/kenashkov/php-tests)
 - [Dockerfiles](https://github.com/kenashkov/php-tests-dockerfiles)
 - [Zend Framework](https://framework.zend.com/downloads) - to be installed under ./zend_framework with `composer require zendframework/zendframework` for test purpose
 
@@ -71,7 +71,7 @@ A list of the test - **please click on each test for more details** and complete
   - Apache/mod_php 500 / 10 000 - Requests per second: **1706.33** with **144 failed requests**
   - Swoole 1 000 / 10 000 - Requests per second: **34662.77**
   - Apache/mod_php 1 000 / 10 000 - Requests per second: **1339.36** with **161 failed requests**
-- [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (thorugh Composer autoload) 100 classes 
+- [3] **[basic_class_load_multiple](./basic_class_load_multiple/)** - [basic_class_load](./basic_class_load/) + autoloading (through Composer autoload) 100 classes 
   - Swoole 100 / 10 000 - Requests per second: **53625.63**
   - Apache/mod_php 100 / 10 000 - Requests per second: **2073.61**
   - Swoole 500 / 10 000 - Requests per second: **39887.20**
@@ -221,11 +221,14 @@ Swoole does not execute PHP faster that any other setup. If your application use
 Swoole can also serve as a traditional web server (static_handler & document_root need to be enabled) but it is better to offload the static handling to Apache or Nginx.
 Swoole also supports HTTP2 and HTTPS but these were not included in the tests. And there is also a Websocket server!
 
-One last thing to note is that the tests were done on a 6 core processor. Modern servers are usually dual socket and are 8-10 cores per socket so the actual results if you run the same tests on your server will be better.
-Of course running actual code will produce different results.
+One last thing to note is that the tests were done on a 6 core processor. Modern servers are usually dual socket and have 8-10 cores per socket so the actual results if you run the same tests on your server will be better.
+Of course running real world application will produce different results.
 
 ## Additional resources
 
 - [English documentation](http://swoole.co.uk) - some parts of the documentation are outdated.
 - [Chinese documentation](https://wiki.swoole.com/) - Google Translate does a decent job and I strongly recommend this resource. Besides current documentation there are also many technical details/advanced sections provided.
 - [Coroutines in Swoole](http://vesko.blogs.azonmedia.com/2019/09/19/coroutines-in-swoole/) - Introduction to Coroutines in Swoole.
+
+## Edits
+- 19.12.2019 - fixed docker images links and some typos
